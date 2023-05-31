@@ -12,42 +12,34 @@
 
 const select = document.querySelector('.js_select');
 const bet =document.querySelector('.js_advice');
-const advice= document.querySelector('.jsa_advice');
+const advice= document.querySelector('.js_advice');
 const balance= document.querySelector('.js_balance');
 const btn= document.querySelector('.js_btn');
 
 //EVENTOS click
 function handleClickBtn(ev) {
     //ev.preventDefault();
-    const selectOption = select.value;
-    //randomnumber
+    const selectOption = parseInt(select.value);
+    console.log (selectOption);
     const randomNumber = getRandomNumber(6);
+    console.log (randomNumber);
+    
     //condición
-    if (randomNumber === parseInt(selectOption)) {
+    if (selectOption === randomNumber) {
         advice.textContent = "Has ganado el doble de lo apostado";
         
-    }else if (selectOption === "") {
-        advice.textContent = "Vamos a jugar";
-    }else {
+    }else if (selectOption !== randomNumber) {        
         advice.textContent = "Has perdido lo apostado";
+    }else {
+        advice.textContent = "Vamos a jugar";
     }
+
 }
 console.log (handleClickBtn());
 
 
 btn.addEventListener("click", handleClickBtn);
 
-//CONDICIONAL/COMPARA
-/*
-if (randomNumber === parseInt(selectOption)) {
-    advice.textContent = "Has ganado el doble de lo apostado";
-}else if (randomNumber === "") {
-    advice.textContent = "Vamos a jugar";
-}else {
-    advice.textContent = "Has perdido lo apostado";
-}
-;
-*/
 
 //FUNCIONES
 //Función generadora numero aleatorio 1/6
@@ -55,6 +47,7 @@ if (randomNumber === parseInt(selectOption)) {
 function getRandomNumber(max) {
     return Math.ceil(Math.random() * max);
    }
-const randomNumber = getRandomNumber(6); 
-console.log (randomNumber);  
+   
+/*const randomNumber = getRandomNumber(6); */
+  
 
