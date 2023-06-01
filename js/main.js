@@ -11,10 +11,11 @@
 //TRAER ELEMENTOS HTML
 
 const select = document.querySelector('.js_select');
-const bet =document.querySelector('.js_advice');
+const betInput =document.querySelector('.js_bet');
 const advice= document.querySelector('.js_advice');
 const balance= document.querySelector('.js_balance');
 const btn= document.querySelector('.js_btn');
+const userBalanceSpam= document.querySelector('.js_userBalance');
 /*
 //EVENTOS click
 function handleClickBtn(ev) {
@@ -35,14 +36,30 @@ function handleClickBtn(ev) {
     }
 
 }*/
-console.log (handleClickBtn());
-
-
-btn.addEventListener("click", handleClickBtn);
 
 //funcion saldo
 let userBalance = 50;
-    balance.textContent = `Saldo ${userBalance}`
+userBalanceSpam.textContent = userBalance;
+
+
+//FUNCIONES
+//Función generadora numero aleatorio 1/6
+
+function getRandomNumber(max) {
+    return Math.ceil(Math.random() * max);
+   }
+
+//function 
+const addUserBet = () => {
+    const bet = parseFloat(betInput.value);
+    userBalance = userBalance + (bet*2);
+    userBalanceSpam.innerHTML=userBalance;
+}
+const decreaseUserBet = () => {
+    const bet = parseFloat(betInput.value);
+    userBalance = userBalance - bet;
+    userBalanceSpam.innerHTML = userBalance;
+}
 
 function handleClickBtn(ev) {
     //ev.preventDefault();
@@ -52,26 +69,24 @@ function handleClickBtn(ev) {
     console.log (randomNumber);
     
     
-    //condición
-    if (selectOption === randomNumber ) {
-        advice.textContent = "Has ganado el doble de lo apostado";
-        const win = userBalance * 2
-        win += userBalance;
+//condición
+if (selectOption === randomNumber ) {
         
-    }else if (selectOption !== randomNumber) {        
-        advice.textContent = "Has perdido lo apostado";
-    }else {
-        advice.textContent = "Vamos a jugar";
+        advice.textContent = "Has ganado el doble de lo apostado😀";
+        addUserBet();
+
+    }else if (selectOption !== randomNumber) {   
+
+        advice.textContent = "Has perdido lo apostado😒";
+        decreaseUserBet();
+    
+        
     }
 
 }
-//FUNCIONES
-//Función generadora numero aleatorio 1/6
+btn.addEventListener("click", handleClickBtn);
+console.log (handleClickBtn());
 
-function getRandomNumber(max) {
-    return Math.ceil(Math.random() * max);
-   }
-   
 /*const randomNumber = getRandomNumber(6); */
-  
 
+//funcion saldo
