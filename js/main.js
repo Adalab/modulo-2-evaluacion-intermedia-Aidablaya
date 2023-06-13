@@ -1,3 +1,4 @@
+'use strict'
 /*
 1 crear html
 2 crear clases/const
@@ -10,36 +11,17 @@
 
 //TRAER ELEMENTOS HTML
 
-const select = document.querySelector('.js_select');
-const betInput =document.querySelector('.js_bet');
-const advice= document.querySelector('.js_advice');
-const balance= document.querySelector('.js_balance');
-const btn= document.querySelector('.js_btn');
-const userBalanceSpam= document.querySelector('.js_userBalance');
-/*
-//EVENTOS click
-function handleClickBtn(ev) {
-    //ev.preventDefault();
-    const selectOption = parseInt(select.value);
-    console.log (selectOption);
-    const randomNumber = getRandomNumber(6);
-    console.log (randomNumber);
-    
-    //condición
-    if (selectOption === randomNumber) {
-        advice.textContent = "Has ganado el doble de lo apostado";
-        
-    }else if (selectOption !== randomNumber) {        
-        advice.textContent = "Has perdido lo apostado";
-    }else {
-        advice.textContent = "Vamos a jugar";
-    }
+const userNumberSelect = document.querySelector('.js_select');
+const betInput = document.querySelector('.js_bet');
+const advice = document.querySelector('.js_advice');
 
-}*/
+const btn = document.querySelector('.js_btn');
+const userBalanceSpam = document.querySelector('.js_userBalance');
+
 
 //funcion saldo
 let userBalance = 50;
-userBalanceSpam.textContent = userBalance;
+
 
 
 //FUNCIONES
@@ -47,23 +29,31 @@ userBalanceSpam.textContent = userBalance;
 
 function getRandomNumber(max) {
     return Math.ceil(Math.random() * max);
-   }
+};
 
 //function 
 const addUserBet = () => {
     const bet = parseFloat(betInput.value);
-    userBalance = userBalance + (bet*2);
-    userBalanceSpam.innerHTML=userBalance;
-}
+    userBalance = userBalance + (bet * 2);
+    userBalanceSpam.innerHTML = userBalance;
+    
+};
+
+
 const decreaseUserBet = () => {
     const bet = parseFloat(betInput.value);
     userBalance = userBalance - bet;
     userBalanceSpam.innerHTML = userBalance;
-}
+};
 
-function handleClickBtn(ev) {
-    //ev.preventDefault();
-    const selectOption = parseInt(select.value);
+const writeMessage = (nombreVari) => {
+    advice.innerHTML = nombreVari;
+};
+  
+
+const handleClickBtn = (ev)=> {
+    ev.preventDefault();
+    const selectOption = parseInt(userNumberSelect.value);
     console.log (selectOption);
     const randomNumber = getRandomNumber(6);
     console.log (randomNumber);
@@ -72,21 +62,18 @@ function handleClickBtn(ev) {
 //condición
 if (selectOption === randomNumber ) {
         
-        advice.textContent = "Has ganado el doble de lo apostado😀";
+        writeMessage ("Has ganado el doble de lo apostado😀");
         addUserBet();
 
     }else if (selectOption !== randomNumber) {   
 
-        advice.textContent = "Has perdido lo apostado😒";
+        writeMessage ("Has perdido lo apostado😒");
         decreaseUserBet();
     
         
     }
 
-}
+};
 btn.addEventListener("click", handleClickBtn);
-console.log (handleClickBtn());
 
-/*const randomNumber = getRandomNumber(6); */
 
-//funcion saldo
