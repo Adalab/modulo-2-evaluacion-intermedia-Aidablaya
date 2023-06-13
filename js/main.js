@@ -65,7 +65,7 @@ if (selectOption === randomNumber ) {
         writeMessage ("Has ganado el doble de lo apostado😀");
         addUserBet();
 
-    }else if (selectOption !== randomNumber) {   
+    }else{   
 
         writeMessage ("Has perdido lo apostado😒");
         decreaseUserBet();
